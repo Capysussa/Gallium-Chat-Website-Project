@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
     let chatTextInput = document.getElementById("chat-text-input");
     let chatMessages = document.getElementById("chat-messages");
     let chatMessage = document.getElementsByClassName("chat_Message");
@@ -6,17 +5,17 @@ document.addEventListener("DOMContentLoaded", function () {
     let separator = "•";
     let chatHistory = [];
 
-    function sendMessage(textContent) {
+    function sendMessage(textContent = "Hello, world!", pfp = "pfp.png", authorUsername = "Username", date = getDate()) {
         let messageObject = {
-            author: username,
-            dateSent: getDate(),
+            author: authorUsername,
+            dateSent: date,
             text: textContent
         }
         chatMessages.innerHTML += `
         <div class="chat_Message">
-            <img src="f514cefad0334d413f09f9a2eb468db7.png" alt="Profile Picture of ${username}" class="chat_Message_Author_PFP">
+            <img src="pfp.png" alt="Profile Picture of ${authorUsername}" class="chat_Message_Author_PFP">
             <div class="chat_Message_Info">
-                <span class="chat_Message_Author">${username}</span>
+                <span class="chat_Message_Author">${authorUsername}</span>
                 <span class="chat_Message_Author_Date_Separator">${separator}</span>
                 <span class="chat_Message_DateSent">${messageObject.dateSent}</span>
             </div>
@@ -47,14 +46,30 @@ document.addEventListener("DOMContentLoaded", function () {
         return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}, ${hours}:${minutes}:${seconds}`;
     }
 
+    function handleTextInputFormattingFunctions(text) {
+        let mathFuncRegex = /[^\\]math\(([^ä])\)/i;
+        let italicRegex = /[^\\]italic\(()\)/i;
+        let boldRegex = /[^\\]bold\(()\)/i;
+
+
+        text.replace(mathFuncRegex, (match, p1) => {
+            return Math.eval(p1).toString();
+        })
+
+        text.replace(italicRegex, (match, p1) => {
+            return "<i>${p1}</i>";
+        });
+
+        return text;
+    }
+
     chatTextInput.addEventListener("keydown", (e) => {
         if (e.shiftKey && e.key === "Enter") {
             chatTextInput.innerHTML += "<br>";
         } else if (e.key === "Enter") {
             e.preventDefault();
-            if (chatTextInput.textContent !== "") sendMessage(chatTextInput.textContent);
+            if (chatTextInput.textContent !== "") sendMessage(handleTextInputFormattingFunctions(chatTextInput.textContent), "pfp.png", username, getDate());
             chatTextInput.textContent = "";
         }
     });
-});
 
