@@ -2,33 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+          rel="stylesheet">
 
-    <link rel="stylesheet" href="style_Index.css">
+    <link href="style_Index.css" rel="stylesheet">
     <title>Gallium Test</title>
 </head>
 <body>
 
-    <div id="main-content">
-        <h1>Gallium Chat</h1>
-        <div id="chat-messages">
+<div id="main-content">
+    <h1>Gallium Chat</h1>
+    <div id="chat-messages">
 
-        </div>
-        <div id="chat-bar">
-            <div id="chat-text-input" contenteditable="true"></div>
-        </div>
-<!--        <div id="user-settings-label">-->
-<!--            <img src="pfp.png" id="user-settings-label-pfp">-->
-<!--            <span id="user-settings-label-name">Username</span>-->
-<!--            <button id="user-settings"></button>-->
-<!--        </div>-->
     </div>
+    <div id="chat-bar">
+        <div contenteditable="true" id="chat-text-input"></div>
+    </div>
+    <div id="user-settings-label">
+        <img src="pfp.png" id="user-settings-label-pfp" alt="Your Profile Picture">
+        <span id="user-settings-label-name">Username</span>
+        <button id="user-settings-button"></button>
+    </div>
+</div>
 
 
-    <script type="text/javascript" src="index.js"></script>
+<script src="index.js" type="text/javascript"></script>
 </body>
 </html>
